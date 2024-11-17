@@ -1,0 +1,30 @@
+<h1>
+  {{title}}
+</h1>
+<form method="POST">
+  {{! Input names have to match the name of the fields in the mongo schema object }}
+  {{! Mapping is not automatic, but it's best practices }}
+  <fieldset>
+    <label for="name" class="col-2">
+      Name:
+    </label>
+    <input name="name" id="name" required value="{{project.name}}" />
+  </fieldset>
+  {{! Add fieldset for status }}
+  <fieldset>
+    <label for="status" class="col-2">
+      Status:
+    </label>
+    {{! <input name="course" id="course" required /> }}
+    <select name="status" id="status">
+        {{! Use HBS helper function to customize rendering }}
+        {{createOptionElement "TO READ" project.status}}
+        {{createOptionElement "READING" project.status}}
+        {{createOptionElement "READ" project.status}}
+    </select>
+  </fieldset>
+  {{! Button needs to be inside <form> element to trigger POST }}
+  <button class="offset-3 btn btn-primary">
+    Save
+  </button>
+</form>
